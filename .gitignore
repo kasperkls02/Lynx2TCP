@@ -6,6 +6,12 @@
 *.user
 *.sln.docstates
 
+
+*.bin
+*.v2
+*.wsuo
+*.vsidx
+
 # Build results
 
 [Dd]ebug/

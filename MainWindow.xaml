@@ -1,0 +1,177 @@
+﻿<Window x:Class="Lynx2TCP.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Lynx2TCP"
+    mc:Ignorable="d"
+    Title="Lynx2TCP" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <TabControl Grid.ColumnSpan="2" Grid.Row="0">
+            <TabItem Header="Interface">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="ResultGrid" Grid.Column="0" AutoGenerateColumns="False">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DeltaTimeAsTimeSpan}"
+                                        Value="True">
+                                        <Setter Property="Background" Value="Yellow" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Pos" Binding="{Binding Pos}" />
+                            <DataGridTextColumn Header="Bib" Binding="{Binding Bib}" />
+                            <DataGridTextColumn Header="Firstname" Binding="{Binding Firstname}"
+                                Visibility="Collapsed" />
+                            <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}"
+                                Visibility="Collapsed" />
+                            <DataGridTextColumn Header="Fullname" Binding="{Binding Fullname}" />
+                            <DataGridTextColumn Header="Finish Time" Binding="{Binding FinishTime}" />
+                            <DataGridTextColumn Header="Delta time" Binding="{Binding DeltaTime}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                        <Button Content="Button 1" Width="100" Margin="5" />
+                        <Button Content="Button 2" Width="100" Margin="5" />
+                        <Button Click="SettingsButton_Click" Content="Settings" Width="100"
+                            Margin="5" />
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Lynx config">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Section for configuring path for Lynx folder and result file -->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Lynx Folder Path:" Grid.Row="0" Grid.Column="0" />
+                        <TextBox x:Name="LynxFolderPathTextBox" Grid.Row="0" Grid.Column="1" />
+                        <Button Content="Browse" Click="BrowseLynxFolder_Click" Grid.Row="0"
+                            Grid.Column="2" />
+
+                        <Label Content="Result File Path:" Grid.Row="1" Grid.Column="0" />
+                        <TextBox x:Name="ResultFilePathTextBox" Grid.Row="1" Grid.Column="1" />
+                        <Button Content="Browse" Click="BrowseResultFile_Click" Grid.Row="1"
+                            Grid.Column="2" />
+                    </Grid>
+
+                    <!-- Section for inputting Sportstiming.dk API key, raceid and selecting linking
+                    data -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Sportstiming Configuration:" FontWeight="Bold" FontSize="16"
+                            Grid.ColumnSpan="4" />
+
+                        <Label Content="API Key:" Grid.Row="1" Grid.Column="0" />
+                        <TextBox x:Name="ApiKeyTextBox" Grid.Row="1" Grid.Column="1" />
+
+                        <Label Content="Race ID:" Grid.Row="1" Grid.Column="2" />
+                        <TextBox x:Name="RaceIdTextBox" Grid.Row="1" Grid.Column="3" />
+
+                        <Button Content="Connect" Grid.Row="2" Grid.Column="0" />
+                        <TextBlock x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="1"
+                            Grid.ColumnSpan="3" Text="Not connected" />
+
+                        <Label Content="Linking Data:" Grid.Row="3" Grid.Column="0" />
+                        <ComboBox x:Name="LinkingDataComboBox" Grid.Row="3" Grid.Column="1"
+                            Grid.ColumnSpan="3">
+                            <!-- Add ComboBoxItems for different ways of linking data -->
+                            <ComboBoxItem Content="Linking Method 1" />
+                            <ComboBoxItem Content="Linking Method 2" />
+                            <!-- Add more ComboBoxItems as needed -->
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="TCP export" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+            
+                    <Label Content="IP Address:" Grid.Row="0" />
+                    <TextBox x:Name="IpAddressTextBox" Grid.Row="1" Grid.ColumnSpan="2" />
+            
+                    <Label Content="Port:" Grid.Row="2" />
+                    <TextBox x:Name="PortTextBox" Grid.Row="3" Grid.ColumnSpan="2" />
+            
+                    <Label Content="Device Name:" Grid.Row="4" />
+                    <TextBox x:Name="DeviceNameTextBox" Grid.Row="5" Grid.ColumnSpan="2" />
+            
+                    <Button x:Name="SaveConfigButton" Content="Save Config" Grid.Row="6" Grid.Column="0" />
+                    <Button x:Name="StartConnectionButton" Content="Start Connection" Grid.Row="6" Grid.Column="1" />
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+
+        <StatusBar Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBlock>Status: Ready</TextBlock>
+            <TextBlock>TCP: </TextBlock>
+        </StatusBar>
+
+
+    </Grid>
+</Window>
