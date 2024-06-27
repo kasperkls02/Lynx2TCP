@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework> <!-- Updated to .NET 8 -->
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="WindowsAPICodePack-Shell" Version="*" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="*" /> <!-- Corrected Typo -->
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Settings.Designer.cs">

@@ -79,7 +79,7 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Lynx Folder Path:" Grid.Row="0" Grid.Column="0" />
-                        <TextBox x:Name="LynxFolderPathTextBox" Grid.Row="0" Grid.Column="1" />
+                        <TextBox x:Name="LynxFolderPathTextBox" Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
                         <Button Content="Browse" Click="BrowseLynxFolder_Click" Grid.Row="0"
                             Grid.Column="2" />
 
@@ -115,18 +115,9 @@
                         <Label Content="Race ID:" Grid.Row="1" Grid.Column="2" />
                         <TextBox x:Name="RaceIdTextBox" Grid.Row="1" Grid.Column="3" />
 
-                        <Button Content="Connect" Grid.Row="2" Grid.Column="0" />
+                        <Button Content="Generate .PPL" Grid.Row="2" Grid.Column="0" Click = "GeneratePPL" />
                         <TextBlock x:Name="StatusTextBlock" Grid.Row="2" Grid.Column="1"
-                            Grid.ColumnSpan="3" Text="Not connected" />
-
-                        <Label Content="Linking Data:" Grid.Row="3" Grid.Column="0" />
-                        <ComboBox x:Name="LinkingDataComboBox" Grid.Row="3" Grid.Column="1"
-                            Grid.ColumnSpan="3">
-                            <!-- Add ComboBoxItems for different ways of linking data -->
-                            <ComboBoxItem Content="Linking Method 1" />
-                            <ComboBoxItem Content="Linking Method 2" />
-                            <!-- Add more ComboBoxItems as needed -->
-                        </ComboBox>
+                            Grid.ColumnSpan="3" Text="" />
                     </Grid>
                 </Grid>
             </TabItem>

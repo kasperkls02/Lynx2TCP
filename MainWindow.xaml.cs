@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using Lynx2TCP;
+using System.Xml.Serialization;
 
 namespace Lynx2TCP
 {
@@ -31,6 +32,9 @@ namespace Lynx2TCP
             IpAddressTextBox.Text = Lynx2TCP.Settings.Default.IPAddress;
             PortTextBox.Text = Lynx2TCP.Settings.Default.Port;
             DeviceNameTextBox.Text = Lynx2TCP.Settings.Default.DeviceName;
+            LynxFolderPathTextBox.Text = Lynx2TCP.Settings.Default.LynxFolderPath;
+            ApiKeyTextBox.Text = Lynx2TCP.Settings.Default.sportstimingDKapikey;
+            RaceIdTextBox.Text = Lynx2TCP.Settings.Default.sportstimingDKEventid;
 
 
             // Save settings when the "Save Config" button is clicked
@@ -114,6 +118,8 @@ namespace Lynx2TCP
             if (dialog.ShowDialog() == Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok)
             {
                 LynxFolderPathTextBox.Text = dialog.FileName;
+                Lynx2TCP.Settings.Default.LynxFolderPath = dialog.FileName;
+                Lynx2TCP.Settings.Default.Save();
             }
         }
 
@@ -126,6 +132,17 @@ namespace Lynx2TCP
             }
         }
 
+        private void GeneratePPL(object sender, RoutedEventArgs e)
+        {
+            // Get the path of the lynx folder 
+            string lynxFolderPath = LynxFolderPathTextBox.Text;
+            if (!string.IsNullOrWhiteSpace(lynxFolderPath)) {
+                MessageBox.Show("Lynx folder: " + lynxFolderPath);
+            } else {
+                MessageBox.Show("Please select the Lynx folder");
+                BrowseLynxFolder_Click(sender, e);
+            }
+        }
 
 
     }

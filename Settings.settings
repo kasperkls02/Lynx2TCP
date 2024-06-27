@@ -11,5 +11,14 @@
     <Setting Name="DeviceName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Lynx</Value>
     </Setting>
+    <Setting Name="LynxFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Lynx</Value>
+    </Setting>
+    <Setting Name="sportstimingDKapikey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">b2d1b1c1-1b1b-1b1b-1b1b-1b1b1b1b1b1b</Value>
+    </Setting>
+    <Setting Name="sportstimingDKEventid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1111</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

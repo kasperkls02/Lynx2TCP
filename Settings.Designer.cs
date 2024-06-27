@@ -58,5 +58,38 @@ namespace Lynx2TCP {
                 this["DeviceName"] = value;
             }
         }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Lynx")]
+        public string LynxFolderPath {
+            get {
+                return ((string)(this["LynxFolderPath"]));
+            }
+            set {
+                this["LynxFolderPath"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("b2d1b1c1-1b1b-1b1b-1b1b-1b1b1b1b1b1b")]
+        public string sportstimingDKapikey {
+            get {
+                return ((string)(this["sportstimingDKapikey"]));
+            }
+            set {
+                this["sportstimingDKapikey"] = value;
+            }
+        }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1111")]
+        public string sportstimingDKEventid {
+            get {
+                return ((string)(this["sportstimingDKEventid"]));
+            }
+            set {
+                this["sportstimingDKEventid"] = value;
+            }
+        }
     }
 }
